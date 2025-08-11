@@ -175,3 +175,5 @@ document.getElementById("newItemName").addEventListener("keydown", function(even
         addNewItem()
     }
 });
+
+location.reload(true);
