@@ -1,0 +1,131 @@
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {
+    background-color: #04AA6D;
+    margin-top: 50px;
+}
+.alert.info {
+    background-color: #2196F3;
+}
+.alert.warning {
+    background-color: #ff9800;
+}
+
+
+.closebtn:hover {
+  filter: opacity(50%);
+  cursor:pointer
+}
+
+body { 
+    font-family: Arial; 
+    max-width: 600px; 
+    margin: auto; 
+    padding: 1em; 
+    background-color: #222222;
+    color: white;
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+p, h2 { 
+    text-align: center; 
+}
+
+h2{
+    margin-bottom: 0;
+}
+
+.item { 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 0.5em 0; 
+
+}
+button {
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 4px 12px;
+    color: #000;
+    margin-left: 5px; 
+}
+
+button:active {
+    filter: opacity(50%);
+}
+button:hover{
+    scale: 1.1;
+}
+.date-controls { 
+    text-align: center; 
+    margin-bottom: 10px; 
+}
+.date-controls button { 
+    margin: 0 5px; 
+}
+h3 { 
+    margin-top: 20px; 
+}
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 5px; 
+}
+th, td { 
+    border: 1px solid #ccc; 
+    padding: 4px; 
+    text-align: center; 
+}
+#addItemForm { 
+    display: flex; 
+    margin-bottom: 10px; 
+}
+#addItemForm input { 
+    flex: 1; 
+    padding: 5px; 
+}
+#addItemForm button { 
+    padding: 5px 10px; 
+}
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid white; /* outer border */
+}
+
+th, td {
+    padding: 4px;
+    text-align: center;
+    border-right: 1px solid white;
+}
+
+tr:last-child td { border-bottom: none; }
+tr td:last-child { border-right: none; }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img.icon{
+    vertical-align: middle;
+    margin-right: 4px;
+    top: -1px;
+    position: relative;
+}

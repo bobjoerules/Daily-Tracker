@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Tracker</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <meta name="keywords" content="Daily Tracker, Daily Tally, Track, Tally">
+    <meta name="description" content="Track how many times you do activities daily. This website lets you add tallies that for each day has it's own data value. You can also see the total per year or per month. Data is stored locally.">
+    <meta name="author" content="Miles Chase">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Daily Tracker</h2>
+    <p>Track how many times you do activities daily</p>
+
+    <div class="date-controls">
+        <button onclick="changeDate(-1)">← Previous</button>
+        <input type="date" id="datePicker">
+        <button onclick="changeDate(1)">Next →</button>
+    </div>
+
+    <div id="addItemForm">
+        <input type="text" id="newItemName" placeholder="New item name">
+        <button onclick="addNewItem()">Add</button>
+    </div>
+
+    <div id="items"></div>
+
+    <strong>Days Tracked:</strong> <span id="daysTracked">0</span><br>
+    <strong>Current Streak:</strong> <span id="currentStreak">0</span>
+
+    <h3>Totals This Month:</h3>
+    <div id="monthTotals"></div>
+
+    <h3>Totals This Year:</h3>
+    <div id="yearTotals"></div>
+
+    <div class="alert success closebtn">
+        <strong>All Data Stored Locally 🙂</strong>
+    </div>
+    <script src="keyword.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
