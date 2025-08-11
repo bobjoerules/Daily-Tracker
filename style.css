@@ -31,9 +31,6 @@ body {
     padding: 1em; 
     background-color: #222222;
     color: white;
-    display: flex;  
-    flex-direction: column;
-    justify-content: center;
     height: 100vh;
 }
 
