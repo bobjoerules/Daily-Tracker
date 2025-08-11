@@ -176,4 +176,8 @@ document.getElementById("newItemName").addEventListener("keydown", function(even
     }
 });
 
-location.reload(true);
+const reloadtoday = new Date().toDateString();
+if (localStorage.getItem('lastLoadDate') !== reloadtoday) {
+  localStorage.setItem('lastLoadDate', reloadtoday);
+  location.reload(true);
+}
