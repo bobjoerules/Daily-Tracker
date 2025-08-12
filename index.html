@@ -38,13 +38,14 @@
     <h3>Totals This Year:</h3>
     <div id="yearTotals"></div>
 
-    <div class="alert success closebtn">
+    <div id="dataAlert" class="alert success closebtn">
         <strong>All Data Stored Locally 🙂</strong>
     </div>
     <div style="margin-top: 20px; text-align: center;">
-        <button onclick="downloadData()">Download Data</button>
-        <input type="file" id="fileUpload" accept=".txt" onchange="uploadData(event)" hidden>
-        <button onclick="document.getElementById('fileUpload').click()">Upload Data</button>
+        <button style="width: auto;" onclick="downloadData()">Download Data</button>
+        <input style="width: auto;" type="file" id="fileUpload" accept=".txt" onchange="uploadData(event)" hidden>
+        <button style="width: auto;" onclick="document.getElementById('fileUpload').click()">Upload Data</button>
+        <button onclick="clearData()" style="background-color: red; color: white; border: 1px solid red; width: auto;">Clear Data</button>
     </div>
     <script src="keyword.js"></script>
     <script src="script.js"></script>

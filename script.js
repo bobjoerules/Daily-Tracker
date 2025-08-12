@@ -81,7 +81,7 @@ function removeTally(item) {
 function updateTally(item, change) {
     const date = datePicker.value;
     const data = JSON.parse(localStorage.getItem("dailyData") || "{}");
-    if (!data[date]) data[date] = {};
+    if (data[date][item] === undefined) data[date][item] = 0;
     if (!data[date][item]) data[date][item] = 0;
     data[date][item] = Math.max(0, data[date][item] + change);
     localStorage.setItem("dailyData", JSON.stringify(data));
@@ -176,16 +176,34 @@ function updateStats(data) {
 loadItems();
 
 //Alert Closing
-var close = document.getElementsByClassName("closebtn");
-var i;
+// Check if alert was closed before
+const alertClosed = localStorage.getItem("dataAlertClosed");
 
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function(){
-    this.style.opacity = "0";
-    this.style.pointerEvents = "none";
-    this.style.display = "none";
-  }
+const alertElem = document.getElementById("dataAlert");
+
+if (alertClosed === "true") {
+    // Hide the alert permanently
+    if (alertElem) {
+        alertElem.style.display = "none";
+    }
+} else {
+    // Set up close button behavior
+    var closeBtns = document.getElementsByClassName("closebtn");
+    for (let i = 0; i < closeBtns.length; i++) {
+        closeBtns[i].onclick = function() {
+            this.style.opacity = "0";
+            this.style.pointerEvents = "none";
+            this.style.display = "none";
+            // Also hide the whole alert container if needed
+            if (alertElem) alertElem.style.display = "none";
+
+            // Remember the alert was closed
+            localStorage.setItem("dataAlertClosed", "true");
+        };
+    }
 }
+
+
 document.getElementById("newItemName").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         addNewItem()
@@ -236,6 +254,8 @@ function uploadData(event) {
         }
     };
     reader.readAsText(file);
+    console.log("Updated itemsList:", localStorage.getItem("itemsList"));
+    console.log("Updated dailyData:", localStorage.getItem("dailyData"));
 }
 function editItem(oldName) {
     const newName = prompt(`Enter a new name for "${oldName}":`, oldName)?.trim();
@@ -271,4 +291,20 @@ function editDailyTotalName() {
     dailyTotalName = newName;
     localStorage.setItem("dailyTotalName", dailyTotalName);
     loadItems();
+}
+function clearData() {
+    if (!confirm("Are you sure you want to clear all saved data? This cannot be undone.")) return;
+    localStorage.removeItem("itemsList");
+    localStorage.removeItem("dailyData");
+    localStorage.removeItem("dailyTotalName");
+    
+    // Reset itemsList and dailyTotalName variables in memory
+    itemsList = [];
+    dailyTotalName = "Daily Total";
+
+    // Reset date picker to today
+    datePicker.value = getLocalDateStr();
+
+    loadItems();
+    alert("All data cleared.");
 }
