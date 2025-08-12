@@ -210,11 +210,14 @@ document.getElementById("newItemName").addEventListener("keydown", function(even
     }
 });
 
-const reloadtoday = new Date().toDateString();
-if (localStorage.getItem('lastLoadDate') !== reloadtoday) {
-  localStorage.setItem('lastLoadDate', reloadtoday);
-  location.reload(true);
-};
+window.addEventListener('load', () => {
+  const reloadtoday = new Date().toDateString();
+  if (localStorage.getItem('lastLoadDate') !== reloadtoday) {
+    localStorage.setItem('lastLoadDate', reloadtoday);
+    location.reload();
+  }
+});
+
 function downloadData() {
     const data = {
         itemsList: itemsList,
