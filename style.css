@@ -29,9 +29,12 @@ body {
     max-width: 600px; 
     margin: auto; 
     padding: 1em; 
-    background-color: #222222;
+    transition: background-image 1s ease;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
-    height: 100vh;
+    background-color: #111111;
+    height: 100%;
 }
 
 p, h2 { 
