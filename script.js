@@ -82,9 +82,12 @@ function removeTally(item) {
 function updateTally(item, change) {
     const date = datePicker.value;
     const data = JSON.parse(localStorage.getItem("dailyData") || "{}");
+
+    if (!data[date]) data[date] = {};
     if (data[date][item] === undefined) data[date][item] = 0;
-    if (!data[date][item]) data[date][item] = 0;
+
     data[date][item] = Math.max(0, data[date][item] + change);
+
     localStorage.setItem("dailyData", JSON.stringify(data));
     loadItems();
 }
