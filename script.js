@@ -12,6 +12,8 @@ const datePicker = document.getElementById("datePicker");
 const itemsDiv = document.getElementById("items");
 const monthTotalsDiv = document.getElementById("monthTotals");
 const yearTotalsDiv = document.getElementById("yearTotals");
+let dailyTotalName = localStorage.getItem("dailyTotalName") || "Daily Total";
+
 
 // Load today's date
 const today = getLocalDateStr();
@@ -42,6 +44,19 @@ function loadItems() {
         `;
         itemsDiv.appendChild(div);
     });
+
+    const totalCount = itemsList.reduce((sum, item) => sum + (dayData[item] || 0), 0);
+    itemsDiv.appendChild(document.createElement('hr'));
+    const totalDiv = document.createElement("div");
+    totalDiv.className = "item total-item";
+    totalDiv.innerHTML = `
+    <span>${dailyTotalName}: ${totalCount}</span>
+    <div>
+        <button onclick="editDailyTotalName()">✏️</button>
+    </div>
+    `;
+    itemsDiv.appendChild(totalDiv);
+    itemsDiv.appendChild(document.createElement('hr'));
 
     // Monthly totals
     const monthTotals = getTotalsForRange(date, "month", data);
@@ -248,5 +263,12 @@ function editItem(oldName) {
     }
     localStorage.setItem("dailyData", JSON.stringify(data));
 
+    loadItems();
+}
+function editDailyTotalName() {
+    const newName = prompt("Enter a new name for the daily total:", dailyTotalName)?.trim();
+    if (!newName || newName === dailyTotalName) return;
+    dailyTotalName = newName;
+    localStorage.setItem("dailyTotalName", dailyTotalName);
     loadItems();
 }
