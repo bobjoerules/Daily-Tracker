@@ -1,29 +1,76 @@
 
 const hourlyGradients = [
-"linear-gradient(to right top, #410000, #390413, #2f0a1b, #240f1d, #1a111b, #1a111b, #1a111b, #1a111b, #240f1d, #2f0a1b, #390413, #410000)", // 0
-"linear-gradient(to right top, #3c0400, #370316, #31061d, #27081e, #1c0a1b, #1c0a1b, #1c0a1b, #1c0a1b, #27081e, #31061d, #370316, #3c0400)", // 1
-"linear-gradient(to right top, #360500, #300219, #2a0720, #20091f, #150a1a, #150a1a, #150a1a, #150a1a, #20091f, #2a0720, #300219, #360500)", // 2
-"linear-gradient(to right top, #310600, #2a031c, #24091f, #1a0a20, #100a17, #100a17, #100a17, #100a17, #1a0a20, #24091f, #2a031c, #310600)", // 3
-"linear-gradient(to right top, #2c0700, #25031e, #1f0a1d, #150b20, #0b0a16, #0b0a16, #0b0a16, #0b0a16, #150b20, #1f0a1d, #25031e, #2c0700)", // 4
-"linear-gradient(to right top, #270700, #1f0420, #190b1c, #0f0b1f, #050a15, #050a15, #050a15, #050a15, #0f0b1f, #190b1c, #1f0420, #270700)", // 5
-"linear-gradient(to right top, #0371a5, #32638f, #3f5679, #414a62, #3e3f4d, #3e3f4d, #3e3f4d, #3e3f4d, #414a62, #3f5679, #32638f, #0371a5)", // 6 (day gradient start)
-"linear-gradient(to right top, #1a7fae, #3a6f95, #43657d, #415c65, #3b544d, #3b544d, #3b544d, #3b544d, #415c65, #43657d, #3a6f95, #1a7fae)", // 7
-"linear-gradient(to right top, #2a8bb5, #466b9c, #4e6583, #4a5b6a, #425154, #425154, #425154, #425154, #4a5b6a, #4e6583, #466b9c, #2a8bb5)", // 8
-"linear-gradient(to right top, #3a98bc, #537ca3, #5b768a, #576f71, #4e645a, #4e645a, #4e645a, #4e645a, #576f71, #5b768a, #537ca3, #3a98bc)", // 9
-"linear-gradient(to right top, #4aabc3, #6287aa, #698194, #647b7a, #5a6e64, #5a6e64, #5a6e64, #5a6e64, #647b7a, #698194, #6287aa, #4aabc3)", // 10
-"linear-gradient(to right top, #5abfcb, #718fae, #788a9d, #738592, #677e82, #677e82, #677e82, #677e82, #738592, #788a9d, #718fae, #5abfcb)", // 11
-"linear-gradient(to right top, #6acdd3, #7ca0b3, #839ca6, #7f979f, #749092, #749092, #749092, #749092, #7f979f, #839ca6, #7ca0b3, #6acdd3)", // 12 (midday)
-"linear-gradient(to right top, #6acdd3, #7ca0b3, #839ca6, #7f979f, #749092, #749092, #749092, #749092, #7f979f, #839ca6, #7ca0b3, #6acdd3)", // 13
-"linear-gradient(to right top, #5abfcb, #718fae, #788a9d, #738592, #677e82, #677e82, #677e82, #677e82, #738592, #788a9d, #718fae, #5abfcb)", // 14
-"linear-gradient(to right top, #4aabc3, #6287aa, #698194, #647b7a, #5a6e64, #5a6e64, #5a6e64, #5a6e64, #647b7a, #698194, #6287aa, #4aabc3)", // 15
-"linear-gradient(to right top, #3a98bc, #537ca3, #5b768a, #576f71, #4e645a, #4e645a, #4e645a, #4e645a, #576f71, #5b768a, #537ca3, #3a98bc)", // 16
-"linear-gradient(to right top, #2a8bb5, #466b9c, #4e6583, #4a5b6a, #425154, #425154, #425154, #425154, #4a5b6a, #4e6583, #466b9c, #2a8bb5)", // 17
-"linear-gradient(to right top, #1a7fae, #3a6f95, #43657d, #415c65, #3b544d, #3b544d, #3b544d, #3b544d, #415c65, #43657d, #3a6f95, #1a7fae)", // 18
-"linear-gradient(to right top, #0371a5, #32638f, #3f5679, #414a62, #3e3f4d, #3e3f4d, #3e3f4d, #3e3f4d, #414a62, #3f5679, #32638f, #0371a5)", // 19
-"linear-gradient(to right top, #2a4661, #4a4f5d, #4a4750, #453d42, #3e3335, #3e3335, #3e3335, #3e3335, #453d42, #4a4750, #4a4f5d, #2a4661)", // 20
-"linear-gradient(to right top, #1f2d3d, #37363c, #393336, #362e30, #302927, #302927, #302927, #302927, #362e30, #393336, #37363c, #1f2d3d)", // 21
-"linear-gradient(to right top, #141c27, #242829, #272423, #25211f, #211d1a, #211d1a, #211d1a, #211d1a, #25211f, #272423, #242829, #141c27)", // 22
-"linear-gradient(to right top, #0a0e13, #131519, #141316, #13110f, #0f0d0b, #0f0d0b, #0f0d0b, #0f0d0b, #13110f, #141316, #131519, #0a0e13)", // 23
+// 0 - midnight - deep violet outside
+  "linear-gradient(to right top, #1a0033, #12002a, #0b0021, #060018, #03000f, #03000f, #03000f, #03000f, #060018, #0b0021, #12002a, #1a0033)",
+  
+  // 1 - 1am - dark indigo outside
+  "linear-gradient(to right top, #160033, #12002c, #0c0024, #08001a, #050011, #050011, #050011, #050011, #08001a, #0c0024, #12002c, #160033)",
+  
+  // 2 - 2am - midnight blue outside
+  "linear-gradient(to right top, #001433, #001029, #000c20, #000917, #00060f, #00060f, #00060f, #00060f, #000917, #000c20, #001029, #001433)",
+  
+  // 3 - 3am - dark teal outside
+  "linear-gradient(to right top, #003333, #002c2c, #002424, #001a1a, #001111, #001111, #001111, #001111, #001a1a, #002424, #002c2c, #003333)",
+  
+  // 4 - 4am - forest green outside
+  "linear-gradient(to right top, #003300, #002a00, #002200, #001800, #001000, #001000, #001000, #001000, #001800, #002200, #002a00, #003300)",
+  
+  // 5 - 5am - olive green outside
+  "linear-gradient(to right top, #334400, #2c3800, #243000, #1a2400, #111800, #111800, #111800, #111800, #1a2400, #243000, #2c3800, #334400)",
+  
+  // 6 - 6am - amber outside
+  "linear-gradient(to right top, #332600, #2c2000, #241a00, #1a1200, #110b00, #110b00, #110b00, #110b00, #1a1200, #241a00, #2c2000, #332600)",
+  
+  // 7 - 7am - rusty orange outside
+  "linear-gradient(to right top, #4d1f00, #441b00, #3c1700, #311100, #260b00, #260b00, #260b00, #260b00, #311100, #3c1700, #441b00, #4d1f00)",
+  
+  // 8 - 8am - deep red outside
+  "linear-gradient(to right top, #4d0000, #440000, #3c0000, #310000, #260000, #260000, #260000, #260000, #310000, #3c0000, #440000, #4d0000)",
+  
+  // 9 - 9am - burgundy outside
+  "linear-gradient(to right top, #4d0033, #440029, #3c0020, #310017, #26000f, #26000f, #26000f, #26000f, #310017, #3c0020, #440029, #4d0033)",
+  
+  // 10 - 10am - purple outside
+  "linear-gradient(to right top, #3a0066, #33005d, #2b0054, #22004a, #190041, #190041, #190041, #190041, #22004a, #2b0054, #33005d, #3a0066)",
+  
+  // 11 - 11am - navy outside
+  "linear-gradient(to right top, #00004d, #000044, #00003c, #000031, #000026, #000026, #000026, #000026, #000031, #00003c, #000044, #00004d)",
+  
+  // 12 - noon - deep cyan outside
+  "linear-gradient(to right top, #004d4d, #004444, #003c3c, #003131, #002626, #002626, #002626, #002626, #003131, #003c3c, #004444, #004d4d)",
+  
+  // 13 - 1pm - dark sea green outside
+  "linear-gradient(to right top, #2a4d2a, #244424, #1e3c1e, #153115, #0f260f, #0f260f, #0f260f, #0f260f, #153115, #1e3c1e, #244424, #2a4d2a)",
+  
+  // 14 - 2pm - muted olive outside
+  "linear-gradient(to right top, #4d4d26, #44441f, #3c3c18, #313110, #262609, #262609, #262609, #262609, #313110, #3c3c18, #44441f, #4d4d26)",
+  
+  // 15 - 3pm - golden brown outside
+  "linear-gradient(to right top, #664d00, #5d4400, #543c00, #4a3100, #412600, #412600, #412600, #412600, #4a3100, #543c00, #5d4400, #664d00)",
+  
+  // 16 - 4pm - burnt orange outside
+  "linear-gradient(to right top, #804d00, #744400, #693c00, #5f3100, #542600, #542600, #542600, #542600, #5f3100, #693c00, #744400, #804d00)",
+  
+  // 17 - 5pm - dark maroon outside
+  "linear-gradient(to right top, #4d0026, #440022, #3c001d, #310017, #260011, #260011, #260011, #260011, #310017, #3c001d, #440022, #4d0026)",
+  
+  // 18 - 6pm - deep plum outside
+  "linear-gradient(to right top, #330033, #2c002c, #240024, #1a001a, #110011, #110011, #110011, #110011, #1a001a, #240024, #2c002c, #330033)",
+  
+  // 19 - 7pm - midnight purple outside
+  "linear-gradient(to right top, #260026, #220022, #1d001d, #170017, #110011, #110011, #110011, #110011, #170017, #1d001d, #220022, #260026)",
+  
+  // 20 - 8pm - dark navy outside
+  "linear-gradient(to right top, #000026, #000022, #00001d, #000017, #000011, #000011, #000011, #000011, #000017, #00001d, #000022, #000026)",
+  
+  // 21 - 9pm - charcoal outside
+  "linear-gradient(to right top, #1a1a1a, #161616, #121212, #0e0e0e, #0a0a0a, #0a0a0a, #0a0a0a, #0a0a0a, #0e0e0e, #121212, #161616, #1a1a1a)",
+  
+  // 22 - 10pm - dark gray outside
+  "linear-gradient(to right top, #333333, #2e2e2e, #292929, #232323, #1e1e1e, #1e1e1e, #1e1e1e, #1e1e1e, #232323, #292929, #2e2e2e, #333333)",
+  
+  // 23 - 11pm - almost black outside
+  "linear-gradient(to right top, #0a0a0a, #080808, #060606, #040404, #020202, #020202, #020202, #020202, #040404, #060606, #080808, #0a0a0a)",
 ];
 
 function setBackgroundBasedOnTime() {

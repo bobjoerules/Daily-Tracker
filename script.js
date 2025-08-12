@@ -36,6 +36,7 @@ function loadItems() {
         <div>
             <button style="background-color: green; color: white; border: black;" onclick="addTally('${item}')">+</button>
             <button style="background-color: red; color: white; border: black;" onclick="removeTally('${item}')">−</button>
+            <button onclick="editItem('${item}')">✏️</button>
             <button onclick="deleteItem('${item}')">🗑</button>
         </div>
         `;
@@ -180,4 +181,72 @@ const reloadtoday = new Date().toDateString();
 if (localStorage.getItem('lastLoadDate') !== reloadtoday) {
   localStorage.setItem('lastLoadDate', reloadtoday);
   location.reload(true);
+};
+function downloadData() {
+    const data = {
+        itemsList: itemsList,
+        dailyData: JSON.parse(localStorage.getItem("dailyData") || "{}")
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `tally-data-${getLocalDateStr()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+}
+function uploadData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const importedData = JSON.parse(e.target.result);
+            if (importedData.itemsList && importedData.dailyData) {
+                itemsList = importedData.itemsList;
+                localStorage.setItem("itemsList", JSON.stringify(itemsList));
+                localStorage.setItem("dailyData", JSON.stringify(importedData.dailyData));
+                loadItems();
+                alert("Data uploaded successfully!");
+            } else {
+                alert("Invalid file format.");
+            }
+        } catch (err) {
+            alert("Error reading file: " + err.message);
+        }
+    };
+    reader.readAsText(file);
+}
+function editItem(oldName) {
+    const newName = prompt(`Enter a new name for "${oldName}":`, oldName)?.trim();
+    if (!newName || newName === oldName) return;
+    
+    if (itemsList.includes(newName)) {
+        alert(`"${newName}" already exists. Please choose a different name.`);
+        return;
+    }
+
+    // Update itemsList
+    const index = itemsList.indexOf(oldName);
+    if (index !== -1) {
+        itemsList[index] = newName;
+        localStorage.setItem("itemsList", JSON.stringify(itemsList));
+    }
+
+    // Update dailyData keys
+    let data = JSON.parse(localStorage.getItem("dailyData") || "{}");
+    for (let date in data) {
+        if (data[date][oldName] !== undefined) {
+            data[date][newName] = data[date][oldName];
+            delete data[date][oldName];
+        }
+    }
+    localStorage.setItem("dailyData", JSON.stringify(data));
+
+    loadItems();
 }

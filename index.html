@@ -17,9 +17,9 @@
     <p>Track how many times you do activities daily</p>
 
     <div class="date-controls">
-        <button onclick="changeDate(-1)">← Previous</button>
-        <input type="date" id="datePicker">
-        <button onclick="changeDate(1)">Next →</button>
+        <button class="date-controls" onclick="changeDate(-1)">← Previous</button>
+        <input class="date-controls" type="date" id="datePicker">
+        <button class="date-controls" onclick="changeDate(1)">Next →</button>
     </div>
 
     <div id="addItemForm">
@@ -40,6 +40,11 @@
 
     <div class="alert success closebtn">
         <strong>All Data Stored Locally 🙂</strong>
+    </div>
+    <div style="margin-top: 20px; text-align: center;">
+        <button onclick="downloadData()">Download Data</button>
+        <input type="file" id="fileUpload" accept=".txt" onchange="uploadData(event)" hidden>
+        <button onclick="document.getElementById('fileUpload').click()">Upload Data</button>
     </div>
     <script src="keyword.js"></script>
     <script src="script.js"></script>
