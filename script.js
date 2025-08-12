@@ -71,6 +71,7 @@ function loadItems() {
 }
 
 function addTally(item) {
+    alert(`Add button clicked for: ${item}`);
     updateTally(item, 1);
 }
 
