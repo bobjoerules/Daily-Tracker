@@ -33,7 +33,7 @@ function processMatches(root) {
             if (lowerText === keyword || lowerText.startsWith(keyword)) {
                 el.innerHTML = `<img width="20px" src="${imgSrc}" class="icon" alt="">${text}`;
                 updatedCells.add(el);
-                break; // no need to check further keywords
+                break;
             }
         }
     });
