@@ -19,6 +19,7 @@ const iconMap = {
     bluesky: "images/bluesky.png",
     soundcloud: "images/soundcloud.png",
     twitch: "images/twitch.png",
+    facebook: "images/facebook.png",
 };
 
 function processMatches(root) {
