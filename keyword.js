@@ -10,7 +10,15 @@ const iconMap = {
     fortnite: "images/Fortnite.png",
     genshin: "images/genshin.png",
     minecraft: "images/minecraft.svg",
-    roblox: "images/Roblox.png"
+    roblox: "images/Roblox.png",
+    blender: "images/blender.png",
+    discord: "images/discord.jpeg",
+    spotify: "images/spotify.svg",
+    threads: "images/threads.png",
+    reddit: "images/reddit.png",
+    bluesky: "images/bluesky.png",
+    soundcloud: "images/soundcloud.png",
+    twitch: "images/twitch.png",
 };
 
 function processMatches(root) {
