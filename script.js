@@ -34,29 +34,31 @@ function loadItems() {
         const div = document.createElement("div");
         div.className = "item";
         div.innerHTML = `
-        <span>${item}: ${count}</span>
-        <div>
-            <button style="background-color: green; color: white; border: black;" onclick="addTally('${item}')">+</button>
-            <button style="background-color: red; color: white; border: black;" onclick="removeTally('${item}')">−</button>
-            <button onclick="editItem('${item}')">✏️</button>
-            <button onclick="deleteItem('${item}')">🗑</button>
+        <div class="habit-info">
+            <span class="habit-name">${item}</span>
+            <span class="habit-badge">${count}</span>
+        </div>
+        <div class="habit-actions">
+            <button class="btn-tally plus" onclick="addTally('${item}')" aria-label="Increment">＋</button>
+            <button class="btn-tally minus" onclick="removeTally('${item}')" aria-label="Decrement">−</button>
+            <button class="btn-icon-sm" onclick="editItem('${item}')" title="Edit">✏️</button>
+            <button class="btn-icon-sm" onclick="deleteItem('${item}')" title="Delete">🗑</button>
         </div>
         `;
         itemsDiv.appendChild(div);
     });
 
     const totalCount = itemsList.reduce((sum, item) => sum + (dayData[item] || 0), 0);
-    itemsDiv.appendChild(document.createElement('hr'));
     const totalDiv = document.createElement("div");
-    totalDiv.className = "item total-item";
+    totalDiv.className = "habit-total-row";
     totalDiv.innerHTML = `
-    <span>${dailyTotalName}: ${totalCount}</span>
-    <div>
-        <button onclick="editDailyTotalName()">✏️</button>
+    <div class="total-info">
+        <span class="total-label">${dailyTotalName}</span>
+        <button class="btn-icon-inline" onclick="editDailyTotalName()" aria-label="Rename total">✏️</button>
     </div>
+    <span class="total-value">${totalCount}</span>
     `;
     itemsDiv.appendChild(totalDiv);
-    itemsDiv.appendChild(document.createElement('hr'));
 
     // Monthly totals
     const monthTotals = getTotalsForRange(date, "month", data);
@@ -124,11 +126,25 @@ for (let d in data) {
 }
 
 function createTotalsTable(totals) {
-    let html = "<table><tr></tr>";
+    let html = `
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>Habit</th>
+                <th style="text-align: right;">Total</th>
+            </tr>
+        </thead>
+        <tbody>`;
     for (let item in totals) {
-        html += `<tr><td>${item}</td><td>${totals[item]}</td></tr>`;
+        html += `
+            <tr>
+                <td><span class="summary-item-name">${item}</span></td>
+                <td><span class="summary-item-value">${totals[item]}</span></td>
+            </tr>`;
     }
-    html += "</table>";
+    html += `
+        </tbody>
+    </table>`;
     return html;
 }
 

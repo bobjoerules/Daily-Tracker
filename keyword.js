@@ -23,7 +23,7 @@ const iconMap = {
 };
 
 function processMatches(root) {
-    root.querySelectorAll("td, th, .item span").forEach(el => {
+    root.querySelectorAll("td, th, .habit-name, .summary-item-name, .total-label").forEach(el => {
         if (updatedCells.has(el)) return;
 
         const text = el.innerText.trim();
